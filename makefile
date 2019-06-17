@@ -169,7 +169,7 @@ $(OUTPUT_FOLDER)/$(BINARY_NAME)$(EXTENSION): $(OBJ)
 	$(info Creating $(OUTPUT_FOLDER)/$(BINARY_NAME)$(EXTENSION)...)
 
 # Build all the .o files
-$(OUTPUT_FOLDER)/%.o: %.$(SRC_EXT)
+$(OUTPUT_FOLDER)/%.o: sources/%.$(SRC_EXT)
 	$(CC) $(CFLAGS) $(OPT_CFLAGS) -c $< $(INCLUDES) -o $@
 	$(info Building $@ with $< dependencies using $(strip $(CC)) with $(strip $(CFLAGS)) $(strip $(OPT_CFLAGS)) Flags)
 
