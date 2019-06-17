@@ -10,7 +10,7 @@
 
 class Gestion {
     public:
-    Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP}, an{AN_POTAR} {}
+    Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::IN}, an{AN_POTAR} {}
 
     void selection();
     void commande_radio(char tube_fluo, std::vector<char> &etat_tube_fluo);
