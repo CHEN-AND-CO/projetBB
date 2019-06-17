@@ -10,67 +10,59 @@ Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::
 
 void Gestion::selection(){
   char tube_fluo;
-  int ValeurPotentiometre=an.read();
+  auto valeurPotentiometre=an.read();
 
-  if(ValeurPotentiometre<=600){
+  if(valeurPotentiometre<=600){
     tube_fluo='R';
-    r.set(1);
-    v.set(0);
-    b.set(0);
-  }else if(ValeurPotentiometre<=1200){
+    r.set(true);
+    v.set(false);
+    b.set(false);
+  }else if(valeurPotentiometre<=1200){
     tube_fluo='V';
-    r.set(0);
-    v.set(1);
-    b.set(0);
+    r.set(false);
+    v.set(true);
+    b.set(false);
   }else{
     tube_fluo='B';
-    r.set(0);
-    v.set(0);
-    b.set(1);
+    r.set(false);
+    v.set(false);
+    b.set(true);
   }
+
   if(!bp.get()){
     commande_radio(tube_fluo,etat_tube_fluo);
-    while(!bp.get());
+    while(!bp.get()); // Attente de relachement du bouton poussoir
   }
 }
 
 void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
     std::string couleur, status;
+    int i=-1;
 
     switch(tube_fluo){
         case 'R':
-            etat_tube_fluo[0] = !etat_tube_fluo[0];
-
-            if(etat_tube_fluo[0]){
-                status="allumé";
-            }else{
-                status="éteint";
-            }
+            i = 0;
             couleur="rouge";
-
+        break;
+        case 'V':
+            i = 3;
+            couleur="vert";
             break;
-            case 'V':
-                etat_tube_fluo[1] = !etat_tube_fluo[1];
+        case 'B':
+            i = 2;
+            couleur="bleu";
+            break;
+        default:
+            return;
+        break;
+    }
 
-                if(etat_tube_fluo[1]){
-                    status="allumé";
-                }else{
-                    status="éteint";
-                }
-                couleur="vert";
+    etat_tube_fluo[i] = !etat_tube_fluo[i];
 
-                break;
-            case 'B':
-                etat_tube_fluo[2] = !etat_tube_fluo[2];
-
-                if(etat_tube_fluo[2]){
-                    status="allumé";
-                }else{
-                    status="éteint";
-                }
-                couleur="bleu";
-
-                break;
+    if(etat_tube_fluo[i]){
+        status="allumé";
+    }else{
+        status="éteint";
     }
 
     std::cout << "Le tube fluorescent " << couleur << " est " << status << "\n";
