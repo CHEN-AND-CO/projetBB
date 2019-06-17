@@ -31,6 +31,44 @@ void Gestion::selection(){
   }
 }
 
-void Gestion::commande_radio(char tube_fluo, std::vector<char> &etat_tube_fluo){
+void Gestion::commande_radio(char tube_fluo, std::vector<bool> &etat_tube_fluo){
+    std::string couleur, status;
 
+    switch(tube_fluo){
+        case 'R':
+            etat_tube_fluo[0] != etat_tube_fluo[0];
+
+            if(etat_tube_fluo[0]){
+                status="allumé";
+            }else{
+                status="éteint";
+            }
+            couleur="rouge";
+            
+            break;
+            case 'v':
+                etat_tube_fluo[1] != etat_tube_fluo[1];
+
+                if(etat_tube_fluo[1]){
+                    status="allumé";
+                }else{
+                    status="éteint";
+                }
+                couleur="vert";
+                
+                break;
+            case 'B':
+                etat_tube_fluo[2] != etat_tube_fluo[2];
+
+                if(etat_tube_fluo[2]){
+                    status="allumé";
+                }else{
+                    status="éteint";
+                }
+                couleur="bleu";
+                
+                break;
+    }
+
+    std::cout << "Le tube fluorescent " << couleur << " est " << status << "\n";
 }
