@@ -78,7 +78,9 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
 
  void Gestion::GPIO_1to0(int delai1, int delai0){
      pwm.set(true);
-     usleep(delai1-TREF_COR);
+     delai1-=TREF_COR;
+     usleep(delai1);
      pwm.set(false);
-     usleep(delai0+TREF_COR);
+     delai0-=TREF_COR;
+     usleep(delai0);
  }
