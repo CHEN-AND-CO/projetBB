@@ -3,6 +3,7 @@
 void Gestion::selection(){
   char tube_fluo;
   int ValeurPotentiometre=this->an.read();
+  std::cout << ValeurPotentiometre<<"\n";
   if(ValeurPotentiometre<=600){
     tube_fluo='R';
     this->r.set(1);
