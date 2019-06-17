@@ -6,16 +6,18 @@
 
 #include "defines.hpp"
 #include "GPIO.hpp"
+#include "ADC.hpp"
 
 class Gestion {
     public:
-    Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP} {}
+    Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP}, an{AN_POTAR} {}
 
     void selection();
     void commande_radio(char tube_fluo, std::vector<char> &etat_tube_fluo);
     private:
     GPIO r,v,b;
     GPIO bp;
+    ADC an;
 };
 
 #endif /* GESTION_HPP */
