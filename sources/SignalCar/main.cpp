@@ -12,8 +12,8 @@
 #define GPIO_BLUE 3
 #define GPIO_QAM    1 * 32 + 19
 
-#define UP_TIME      1
-#define DOWN_TIME    1
+#define UP_TIME      333
+#define DOWN_TIME    666
 
 void hInterrupt(int sig) {
     std::cout << "SIGINT (Ctrl+C) caught, exiting...\n";
@@ -29,9 +29,9 @@ int main(){
 
     while(true){
         pwm.set(true);
-        //usleep(UP_TIME);
+        usleep(UP_TIME);
         pwm.set(false);
-        //usleep(DOWN_TIME);
+        usleep(DOWN_TIME);
     }
 
     return 0;
