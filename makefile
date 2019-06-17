@@ -71,7 +71,7 @@ endif
 
 # Source files detection
 ALLSRC := $(call R_WILDCARD,,*.$(SRC_EXT))
-FILTERED_SRC = $(call FILTER_OUT,MergeStructFiles,$(ALLSRC))
+FILTERED_SRC = $(call FILTER_OUT,SignalCar,$(ALLSRC))
 SRCDIR = $(sort $(dir $(FILTERED_SRC)))
 $(info Detected source files : $(ALLSRC))
 $(info After filter : $(FILTERED_SRC))
@@ -80,7 +80,7 @@ $(info )
 
 # Header files detection
 ALLINC := $(call R_WILDCARD,,*.$(INC_EXT))
-FILTERED_INC = $(call FILTER_OUT,MergeStructFiles,$(ALLINC))
+FILTERED_INC = $(call FILTER_OUT,SignalCar,$(ALLINC))
 INCDIR = $(sort $(dir $(FILTERED_INC)))
 $(info Detected header files : $(ALLINC))
 $(info After filter : $(FILTERED_INC))
