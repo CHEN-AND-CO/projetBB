@@ -68,11 +68,6 @@ else ifneq (,$(filter beaglebb BEAGLEBB,$(TARGET)))
 	OPT_CFLAGS = -mcpu=cortex-a8 -mfloat-abi=hard -mfpu=neon -mtune=cortex-a8 -static-libstdc++
 	EXTENSION = -beaglebb
 endif
-ifneq ($(TARGET),)
-	$(info Target $(TARGET) specified, using optimized CFLAGS : $(OPT_CFLAGS) and $(EXTENSION) extension)
-	$(info )
-endif
-
 
 # Source files detection
 ALLSRC := $(call R_WILDCARD,,*.$(SRC_EXT))
