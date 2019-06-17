@@ -21,7 +21,7 @@ void Gestion::selection(){
     this->b.set(1);
   }
   if(this->bp.get()){
-    //commande_radio(tube_fluo,*etat_tube_fluo);
+    commande_radio(tube_fluo,etat_tube_fluo);
   }
 }
 
