@@ -24,6 +24,8 @@ private:
     int port;
     bool export_state;
     std::string mode;
+
+    std::fstream file;
 };
 
 #endif /* GPIO_HPP */

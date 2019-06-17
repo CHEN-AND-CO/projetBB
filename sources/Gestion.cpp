@@ -1,6 +1,6 @@
 #include "Gestion.hpp"
 
-Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::IN}, pwm{GPIO_QAM, GPIO::IN}, an{AN_POTAR} {
+Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::IN}, pwm{GPIO_QAM}, an{AN_POTAR} {
     etat_tube_fluo = new char[3];
 
     etat_tube_fluo[0] = 0;
@@ -77,5 +77,8 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
 }
 
  void Gestion::GPIO_1to0(int delai1, int delai0){
-     
+     pwm.set(true);
+     usleep(delai1);
+     pwm.set(false);
+     usleep(delai0);
  }
