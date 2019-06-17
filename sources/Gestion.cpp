@@ -1,5 +1,11 @@
 #include "Gestion.hpp"
 
+Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::IN}, an{AN_POTAR} {
+    etat_tube_fluo.push_back(0); //R
+    etat_tube_fluo.push_back(0); //V
+    etat_tube_fluo.push_back(0); //B
+}
+
 void Gestion::selection(){
   char tube_fluo;
   int ValeurPotentiometre=this->an.read();
