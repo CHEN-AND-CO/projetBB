@@ -11,5 +11,5 @@
 #define GPIO_BLUE   3
 #define GPIO_BP     1 * 32 + 16
 #define AN_POTAR    "AIN3"
-
+#define TREF        333
 #endif /* DEFINES_HPP */
