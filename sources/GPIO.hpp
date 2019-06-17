@@ -9,7 +9,7 @@
 
 class GPIO {
 public:
-    GPIO(int port, std::string mode =GPIO::OUT);
+    GPIO(int port, std::string mode = GPIO::OUT);
     ~GPIO(){ if(export_state)close(); }
 
     bool init(int port);
