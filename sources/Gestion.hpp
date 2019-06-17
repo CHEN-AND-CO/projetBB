@@ -17,9 +17,11 @@ class Gestion {
 
     void selection();
     void commande_radio(char tube_fluo, char *etat_tube_fluo);
+    void GPIO_1to0(int delai1, int delai0);
     private:
     GPIO r,v,b;
     GPIO bp;
+    GPIO pwm;
     ADC an;
     char *etat_tube_fluo;
 };
