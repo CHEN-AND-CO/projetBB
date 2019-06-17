@@ -10,7 +10,7 @@ Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::
 
 void Gestion::selection(){
   char tube_fluo;
-  int ValeurPotentiometre=an.read();  
+  int ValeurPotentiometre=an.read();
 
   if(ValeurPotentiometre<=600){
     tube_fluo='R';
@@ -47,7 +47,7 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
                 status="éteint";
             }
             couleur="rouge";
-            
+
             break;
             case 'V':
                 etat_tube_fluo[1] = !etat_tube_fluo[1];
@@ -58,7 +58,7 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
                     status="éteint";
                 }
                 couleur="vert";
-                
+
                 break;
             case 'B':
                 etat_tube_fluo[2] = !etat_tube_fluo[2];
@@ -69,7 +69,7 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
                     status="éteint";
                 }
                 couleur="bleu";
-                
+
                 break;
     }
 
@@ -78,7 +78,7 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
 
  void Gestion::GPIO_1to0(int delai1, int delai0){
      pwm.set(true);
-     usleep(delai1);
+     usleep(delai1-TREF_COR);
      pwm.set(false);
-     usleep(delai0);
+     usleep(delai0+TREF_COR);
  }

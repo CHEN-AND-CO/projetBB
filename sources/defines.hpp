@@ -13,5 +13,5 @@
 #define GPIO_QAM    1 * 32 + 19
 #define AN_POTAR    "AIN3"
 #define TREF        333*1000
-
+#define TREF_COR    165
 #endif /* DEFINES_HPP */
