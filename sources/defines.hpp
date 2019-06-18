@@ -17,7 +17,18 @@
 #define TREF_CORH   163
 #define TREF_CORL   55
 
-#define TREFH       TREF-TREF_CORH
-#define TREFL       TREF-TREF_CORL
+#define TREFH       333-173
+#define TREFL       333-133
+
+#define TRIT_A   "1000"
+#define TRIT_B   "0100"
+#define TRIT_C   "0010"
+#define TRIT_D   "0001"
+#define TRIT_1   "100"
+#define TRIT_2   "010"
+#define TRIT_3   "001"
+#define TRIT_SEQ "0111"
+
+#define REPETITIONS 10
 
 #endif /* DEFINES_HPP */

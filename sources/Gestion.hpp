@@ -11,6 +11,10 @@
 #include "ADC.hpp"
 #include "PWM.hpp"
 
+#define PWM_T1_T3(tHigh, tLow)  GPIO_1to0(tHigh, 3*tLow);
+#define PWM_T3_T1(tHigh, tLow)  GPIO_1to0(3*tHigh, tLow);
+#define PWM_T1_T32(tHigh, tLow) GPIO_1to0(tHigh, 32*tLow);
+
 class Gestion {
     public:
     Gestion();
@@ -20,6 +24,7 @@ class Gestion {
     void commande_radio(char tube_fluo, char *etat_tube_fluo);
     void GPIO_1to0(int delai1, int delai0);
     void trans_data_433MHz(char data);
+    void trans_trame_433MHz(char maison, char objet, char activation, char repetition);
 
     PWM getPwm() const& { return pwm; }
     private:
@@ -28,6 +33,7 @@ class Gestion {
     PWM pwm;
     ADC an;
     char *etat_tube_fluo;
+    std::vector<std::string> trit;
 };
 
 #endif /* GESTION_HPP */

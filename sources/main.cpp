@@ -1,24 +1,23 @@
 #include "Gestion.hpp"
 
 int main(int argc, char *argv[]){
-    switch(argc){
-      default:
-        for(auto i = 0; i < argc; i++){
-          std::cout << argv[i] << "\t";
-        }
-        std::cout << "\n";
-        break;
-    }
+  Gestion gestion;
 
-    Gestion gestion;
-    std::string chaine="10S";
-    while(true){
-      //gestion.selection();
-      for(const auto &charac: chaine){
-        gestion.trans_data_433MHz(charac);
+  switch(argc){
+    case 5:
+      gestion.trans_trame_433MHz(
+        *argv[1],
+        std::atoi(argv[2]),
+        std::atoi(argv[3]),
+        std::atoi(argv[4])
+      );
+      break;
+    default:
+      while(true){
+        gestion.selection();
       }
-      //gestion.GPIO_1to0(TREF-TREF_CORH, 3*(TREF-TREF_CORL));
-      //gestion.getPwm().run();
-    }
-    return EXIT_SUCCESS;
+      break;
+  }
+
+  return EXIT_SUCCESS;
 }

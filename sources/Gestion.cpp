@@ -6,6 +6,15 @@ Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::
     etat_tube_fluo[0] = 0;
     etat_tube_fluo[1] = 0;
     etat_tube_fluo[2] = 0;
+
+    for(auto i=0; i<256; i++)trit.push_back("");
+    trit['A'] = TRIT_A;
+    trit['B'] = TRIT_B;
+    trit['C'] = TRIT_C;
+    trit['D'] = TRIT_D;
+    trit[1]   = TRIT_1;
+    trit[2]   = TRIT_2;
+    trit[3]   = TRIT_3;
 }
 
 void Gestion::selection(){
@@ -41,23 +50,27 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
 
     switch(tube_fluo){
         case 'R':
-            i = 0;
+            i=0;
+            etat_tube_fluo[i] = !etat_tube_fluo[i];
             couleur="rouge";
+            trans_trame_433MHz('D', 1,etat_tube_fluo[i], REPETITIONS);
         break;
         case 'V':
-            i = 3;
+            i=1;
+            etat_tube_fluo[i] = !etat_tube_fluo[i];
             couleur="vert";
+            trans_trame_433MHz('C', 2, etat_tube_fluo[i], REPETITIONS);
             break;
         case 'B':
-            i = 2;
+            i=2;
+            etat_tube_fluo[i] = !etat_tube_fluo[i];
             couleur="bleu";
+            trans_trame_433MHz('B', 3, etat_tube_fluo[i], REPETITIONS);
             break;
         default:
             return;
         break;
     }
-
-    etat_tube_fluo[i] = !etat_tube_fluo[i];
 
     if(etat_tube_fluo[i]){
         status="allumé";
@@ -76,23 +89,33 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
  }
 
 void Gestion::trans_data_433MHz(char data){
-switch(data){
-  case '0':
-      T1_T3(TREF_CORH);
-      T3_T1(tHigh);
-      break;
-  case '1':
-      T1_T3(tHigh);
-      T1_T3(tHigh);
-      break;
-  case '2':
-      T3_T1(tHigh);
-      T3_T1(tHigh);
-      break;
-  case 'S':
-      T1_T32(tHigh);
-  break;
-  default:
-      break;
-  }
+  switch(data){
+    case '0':
+        PWM_T1_T3(TREFH, TREFL);
+        PWM_T3_T1(TREFH, TREFL);
+        break;
+    case '1':
+        PWM_T1_T3(TREFH, TREFL);
+        PWM_T1_T3(TREFH, TREFL);
+        break;
+    case '2':
+        PWM_T3_T1(TREFH, TREFL);
+        PWM_T3_T1(TREFH, TREFL);
+        break;
+    case 'S':
+        PWM_T1_T32(TREFH, TREFL);
+    break;
+    default:
+        break;
+    }
+}
+
+void Gestion::trans_trame_433MHz(char maison, char objet, char activation, char repetition){
+    while(repetition--){    
+        for(const auto &i : trit[maison]) trans_data_433MHz(i);
+        for(const auto &i : trit[objet]) trans_data_433MHz(i);
+        for(const auto &i : TRIT_SEQ) trans_data_433MHz(i);
+        trans_data_433MHz(activation);
+        trans_data_433MHz('S');
+    }
 }
