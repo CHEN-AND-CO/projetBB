@@ -26,11 +26,10 @@ class Gestion {
     void trans_data_433MHz(char data);
     void trans_trame_433MHz(char maison, char objet, char activation, char repetition);
 
-    PWM getPwm() const& { return pwm; }
     private:
-    GPIO r,v,b;
+    PWM r,v,b;
     GPIO bp;
-    PWM pwm;
+    GPIO pwm;
     ADC an;
     char *etat_tube_fluo;
     std::vector<std::string> trit;

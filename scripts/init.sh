@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 gpio=/sys/class/gpio
 
@@ -22,3 +22,4 @@ echo cape-bone-iio > /sys/devices/bone_capemgr.*/slots
 echo am33xx_pwm > /sys/devices/bone_capemgr.9
 echo bone_pwm_P9_16 > /sys/devices/bone_capemgr.9
 
+~/projetBB-beaglebb

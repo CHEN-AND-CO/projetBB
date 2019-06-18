@@ -20,7 +20,7 @@ public:
     bool close();
 
     static const std::string IN, OUT;   
-private:
+protected:
     int port;
     bool export_state;
     std::string mode;
