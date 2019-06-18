@@ -16,31 +16,31 @@ Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::
     trit[2]   = TRIT_2;
     trit[3]   = TRIT_3;
 
-    r.setDutyCycle(0);
-    v.setDutyCycle(0);
-    b.setDutyCycle(0);
+    // r.setDutyCycle(0);
+    // v.setDutyCycle(0);
+    // b.setDutyCycle(0);
 
-    std::thread led_pwm_r([this](){
-        while(true){
-            r.run();
-        }
-    });
+    // std::thread led_pwm_r([this](){
+    //     while(true){
+    //         r.run();
+    //     }
+    // });
 
-    std::thread led_pwm_b([this](){
-        while(true){
-            b.run();
-        }
-    });
+    // std::thread led_pwm_b([this](){
+    //     while(true){
+    //         b.run();
+    //     }
+    // });
 
-    std::thread led_pwm_v([this](){
-        while(true){
-            v.run();
-        }
-    });
+    // std::thread led_pwm_v([this](){
+    //     while(true){
+    //         v.run();
+    //     }
+    // });
 
-    led_pwm_r.join();
-    led_pwm_v.join();
-    led_pwm_b.join();
+    // led_pwm_r.join();
+    // led_pwm_v.join();
+    // led_pwm_b.join();
 }
 
 void Gestion::selection(){

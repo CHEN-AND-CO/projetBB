@@ -1,23 +1,33 @@
 #include "PWM.hpp"
 
 void PWM::run(){
-    mutex->lock();
-    set(true);
-    usleep(dutyCycle);
-    set(false);
-    usleep(100-dutyCycle);
-    mutex->unlock();
+    // mutex->lock();
+
+    // if(!out->bad()){
+    //     (*out) << 1;
+    //     out->flush();
+    // }
+    // usleep(dutyCycle);
+
+    // if(!out->bad()){
+    //     (*out) << 0;
+    //     out->flush();
+    // }
+    // usleep(100-dutyCycle);
+
+    // mutex->unlock();
 }
 
-bool PWM::set(bool state){
-    std::ofstream out{ GPIO_PATH "/gpio" + std::to_string(port) + "/value" };
+// bool PWM::set(bool state){
+//     mutex->lock();
+//     if(!out->bad()){
+//         (*out) << ((state)?1:0);
+//         out->flush();
 
-    if(!out.bad()){
-        out << ((state)?1:0);
-        out.flush();
+//         return true;
+//     }
 
-        return true;
-    }
+//     mutex->unlock();
 
-    return false;
-}
+//     return false;
+// }
