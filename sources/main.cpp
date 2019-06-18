@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
     while(true){
       //gestion.selection();
       for(const auto &charac: chaine){
-        trans_data_433MHz(charac);
+        gestion.trans_data_433MHz(charac);
       }
       //gestion.GPIO_1to0(TREF-TREF_CORH, 3*(TREF-TREF_CORL));
       //gestion.getPwm().run();
