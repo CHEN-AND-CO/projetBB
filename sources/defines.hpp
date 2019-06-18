@@ -17,4 +17,7 @@
 #define TREF_CORH   163
 #define TREF_CORL   55
 
+#define TREFH       TREF-TREF_CORH
+#define TREFL       TREF-TREF_CORL
+
 #endif /* DEFINES_HPP */

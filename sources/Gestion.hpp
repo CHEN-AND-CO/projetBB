@@ -19,7 +19,7 @@ class Gestion {
     void selection();
     void commande_radio(char tube_fluo, char *etat_tube_fluo);
     void GPIO_1to0(int delai1, int delai0);
-    void trans_data_433MHz(char data){}
+    void trans_data_433MHz(char data);
 
     PWM getPwm() const& { return pwm; }
     private:

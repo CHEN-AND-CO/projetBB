@@ -70,9 +70,29 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
 
  void Gestion::GPIO_1to0(int delai1, int delai0){
      pwm.set(true);
-     //delai1-=TREF_COR;
      usleep(delai1);
      pwm.set(false);
-     //delai0-=TREF_COR;
      usleep(delai0);
  }
+
+void Gestion::trans_data_433MHz(char data){
+switch(data){
+  case '0':
+      T1_T3(TREF_CORH);
+      T3_T1(tHigh);
+      break;
+  case '1':
+      T1_T3(tHigh);
+      T1_T3(tHigh);
+      break;
+  case '2':
+      T3_T1(tHigh);
+      T3_T1(tHigh);
+      break;
+  case 'S':
+      T1_T32(tHigh);
+  break;
+  default:
+      break;
+  }
+}
