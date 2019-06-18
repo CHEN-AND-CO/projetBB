@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 #include <queue>
+#include <mutex>
 
 #include "GPIO.hpp"
 
@@ -33,12 +34,15 @@ class PWM : public GPIO {
     void setDutyCycle(const float &dutyRate);
     void setT(const unsigned int &_tHigh);
 
+    void start();
     void run();
     private:
     unsigned int period;
     float dutyCycle;
     unsigned int tHigh;
     std::queue<char> buffer;
+
+    //std::mutex mutex;
 };
 
 #endif /* PWM_HPP */

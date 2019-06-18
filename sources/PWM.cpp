@@ -10,6 +10,18 @@ void PWM::setT(const unsigned int &_tHigh){
     dutyCycle = (float) tHigh / period;
 }
 
+void PWM::start(){
+    // std::thread thread([this](){
+    //         while(true){
+    //             mutex.lock();
+    //             run();
+    //             usleep(100);
+    //             mutex.unlock();
+    //         }
+    //     }
+    // );
+}
+
 void PWM::run(){
     if(!buffer.size()){
         set(false);

@@ -14,7 +14,7 @@
 #define AN_POTAR    "AIN3"
 
 #define TREF        333
-#define TREF_CORH   203
-#define TREF_CORL   145
+#define TREF_CORH   163
+#define TREF_CORL   55
 
 #endif /* DEFINES_HPP */
