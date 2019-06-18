@@ -11,10 +11,13 @@ int main(int argc, char *argv[]){
     }
 
     Gestion gestion;
+    std::string chaine="10S";
     while(true){
       //gestion.selection();
-
-      gestion.GPIO_1to0(TREF-TREF_CORH, 3*(TREF-TREF_CORL));
+      for(const auto &charac: chaine){
+        trans_data_433MHz(charac);
+      }
+      //gestion.GPIO_1to0(TREF-TREF_CORH, 3*(TREF-TREF_CORL));
       //gestion.getPwm().run();
     }
     return EXIT_SUCCESS;
