@@ -5,7 +5,7 @@ void PWM::setDutyCycle(const float &dutyRate){
     tHigh = period*dutyCycle;
 }
 
-void PWM::setT(const unsigned int &_tHigh{
+void PWM::setT(const unsigned int &_tHigh){
     tHigh = _tHigh;
     dutyCycle = (float) tHigh / period;
 }
@@ -25,6 +25,8 @@ void PWM::run(){
                 T1_T3(tHigh);
                 break;
             case '2':
+                T3_T1(tHigh);
+                T3_T1(tHigh);
                 break;
             default:
                 set(false);

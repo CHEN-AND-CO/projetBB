@@ -12,6 +12,9 @@
 #define GPIO_BP     1 * 32 + 16
 #define GPIO_QAM    1 * 32 + 19
 #define AN_POTAR    "AIN3"
-#define TREF        333*1000
-#define TREF_COR    165*1000
+
+#define TREF        333
+#define TREF_CORH   203
+#define TREF_CORL   145
+
 #endif /* DEFINES_HPP */

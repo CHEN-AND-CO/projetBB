@@ -12,9 +12,10 @@ int main(int argc, char *argv[]){
 
     Gestion gestion;
     while(true){
-      gestion.selection();
+      //gestion.selection();
 
-      gestion.GPIO_1to0(TREF, 3*TREF);
+      gestion.GPIO_1to0(TREF-TREF_CORH, 3*(TREF-TREF_CORL));
+      //gestion.getPwm().run();
     }
     return EXIT_SUCCESS;
 }

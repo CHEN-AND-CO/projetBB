@@ -21,6 +21,10 @@ class PWM : public GPIO {
         tHigh{tHigh}
     {}
 
+    PWM& operator+=(const std::string &s){ for(const auto &i : s) buffer.push(i); return *this; }
+    PWM& operator+=(const char *s){ while(*s) buffer.push(*(s++)); return *this; }
+    PWM& operator+=(const char &c){ buffer.push(c); return *this; }
+
     unsigned int getPeriod() const& { return period; }
     unsigned int getTHigh() const& { return tHigh; }
     float getDutyCycle() const& { return dutyCycle; }
