@@ -136,6 +136,5 @@ void Gestion::trans_trame_433MHz(char maison, char objet, char activation, char 
         for(const auto &i : TRIT_SEQ) trans_data_433MHz(i);
         trans_data_433MHz('0'+activation);
         trans_data_433MHz('S');
-        std::cout << "\n";
     }
 }

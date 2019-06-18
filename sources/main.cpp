@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
       gestion.trans_trame_433MHz(
         *argv[1],
         std::atoi(argv[2]),
-        std::atoi(argv[3]),
+        !std::atoi(argv[3]),
         std::atoi(argv[4])
       );
       break;
