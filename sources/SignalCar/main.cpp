@@ -25,9 +25,9 @@ int main(int argc, char *argv[]){
   Gestion gestion;
   int code_int;//tram
   std::string code;
-  int taille_bande=1024;
-  int repetition=5;
-  for(code_int=0 ; code_int<taille_bande+1 ; code_int++){
+  int taille_bande=1635;
+  int repetition=10;
+  for(code_int=1630 ; code_int<taille_bande+1 ; code_int++){
     //envoyer valeur
     code=convertisseur(code_int);
     for(int j=0; j<repetition; j++){
@@ -36,8 +36,10 @@ int main(int argc, char *argv[]){
       }
       gestion.trans_data_433MHz('0'); //allumer
       gestion.trans_data_433MHz('S'); //fin
+
       std::cout <<  " code: " << code_int << '\n';
     }
+    usleep(10000);
   }
 
   //incrementer de 1
