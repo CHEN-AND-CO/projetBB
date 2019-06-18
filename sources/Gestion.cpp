@@ -40,7 +40,25 @@ void Gestion::selection(){
 
   if(!bp.get()){
     commande_radio(tube_fluo,etat_tube_fluo);
-    while(!bp.get()); // Attente de relachement du bouton poussoir
+
+    auto time = std::chrono::system_clock::now();
+    while(!bp.get()){
+        if(std::chrono::system_clock::now()-time > std::chrono::seconds(2)){
+            etat_tube_fluo[0] = !etat_tube_fluo[0];
+            etat_tube_fluo[1] = !etat_tube_fluo[1];
+            etat_tube_fluo[2] = !etat_tube_fluo[2];
+            trans_trame_433MHz('D', 1, etat_tube_fluo[0], REPETITIONS);
+            trans_trame_433MHz('C', 2, etat_tube_fluo[1], REPETITIONS);
+            trans_trame_433MHz('B', 3, etat_tube_fluo[2], REPETITIONS);
+        }else if(std::chrono::system_clock::now()-time > std::chrono::seconds(3)){
+            etat_tube_fluo[0] = 1;
+            etat_tube_fluo[1] =  1;
+            etat_tube_fluo[2] = 1;
+            trans_trame_433MHz('D', 1, etat_tube_fluo[0], REPETITIONS);
+            trans_trame_433MHz('C', 2, etat_tube_fluo[1], REPETITIONS);
+            trans_trame_433MHz('B', 3, etat_tube_fluo[2], REPETITIONS);
+        }
+    }
   }
 }
 
