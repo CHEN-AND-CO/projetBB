@@ -19,7 +19,7 @@ REMOTE_PATH = ~/
 
 # Build config and output
 BINARY_NAME = $(notdir $(CURDIR))
-OUTPUT_FOLDER = ../..
+OUTPUT_FOLDER = .
 CFLAGS = -g -Wall -Wextra -Os
 LDFLAGS = -lm -ansi -lpthread
 # Info output

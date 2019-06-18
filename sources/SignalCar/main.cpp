@@ -3,36 +3,43 @@
 #include <thread>
 #include <csignal>
 #include <ctime>
+#include <math.h>
 #include "GPIO.hpp"
-
-#define usleep(x) std::this_thread::sleep_for(std::chrono::microseconds(x))
-
-#define GPIO_RED    1 * 32 + 18
-#define GPIO_GREEN  1 * 32 + 28
-#define GPIO_BLUE   3
-#define GPIO_QAM    1 * 32 + 19
-
-#define UP_TIME      333
-#define DOWN_TIME    666
-
-void hInterrupt(int sig) {
-    std::cout << "SIGINT (Ctrl+C) caught, exiting...\n";
-
-    exit(sig);
+#include "defines.hpp"
+#include "Gestion.hpp"
+std::string convertisseur (int decimal=0){
+  int binaire;
+  std::string tram = "";
+  for(int i=0 ; i < 11 ; i++){
+    binaire=(decimal%2);
+    tram=std::to_string(binaire)+tram;
+    //std::cout << i <<" binaire: " << binaire << '\n';
+    decimal=(decimal-binaire)/2;
+  }
+  //binaire=(decimal/1024)*10 //1
+  //std::cout <<  " tram: " << tram << '\n';
+  return  tram;
 }
 
-int main(){
-    //Setting interrupt handler
-    signal(SIGINT, hInterrupt);
-    
-    GPIO pwm{GPIO_QAM};
-
-    while(true){
-        pwm.set(true);
-        usleep(UP_TIME);
-        pwm.set(false);
-        usleep(DOWN_TIME);
+int main(int argc, char *argv[]){
+  Gestion gestion;
+  int code_int;//tram
+  std::string code;
+  int taille_bande=1024;
+  int repetition=5;
+  for(code_int=0 ; code_int<taille_bande+1 ; code_int++){
+    //envoyer valeur
+    code=convertisseur(code_int);
+    for(int j=0; j<repetition; j++){
+      for(const auto &valeur : code){
+        gestion.trans_data_433MHz(valeur);
+      }
+      gestion.trans_data_433MHz('0'); //allumer
+      gestion.trans_data_433MHz('S'); //fin
+      std::cout <<  " code: " << code_int << '\n';
     }
+  }
 
-    return 0;
+  //incrementer de 1
+  return EXIT_SUCCESS;
 }
