@@ -89,6 +89,7 @@ void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
  }
 
 void Gestion::trans_data_433MHz(char data){
+    std::cout << data;
   switch(data){
     case '0':
         PWM_T1_T3(TREFH, TREFL);
@@ -117,5 +118,6 @@ void Gestion::trans_trame_433MHz(char maison, char objet, char activation, char 
         for(const auto &i : TRIT_SEQ) trans_data_433MHz(i);
         trans_data_433MHz(activation);
         trans_data_433MHz('S');
+        std::cout << "\n";
     }
 }

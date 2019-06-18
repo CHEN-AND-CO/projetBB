@@ -85,7 +85,7 @@ bool GPIO::close(){
     if(!export_state){
         std::cerr << "Error : GPIO Port " << port << " not initialised !" << "\n";
     }else{
-        set(false);
+        if(!mode.compare(GPIO::OUT)) set(false);
         std::ofstream out{ GPIO_PATH "/unexport" };
 
         if(!out.bad()){
