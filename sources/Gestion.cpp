@@ -1,13 +1,12 @@
 #include "Gestion.hpp"
 
-Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::IN}, pwm{GPIO_QAM}, an{AN_POTAR}, tube_fluo{'R'} {
+Gestion::Gestion(): r{GPIO_RED}, v{GPIO_GREEN}, b{GPIO_BLUE}, bp{GPIO_BP, GPIO::IN}, pwm{GPIO_QAM}, an{AN_POTAR}, tube_fluo{'R'}, trit{256, ""} {
     etat_tube_fluo = new char[256];
 
     etat_tube_fluo['R'] = 1;
     etat_tube_fluo['V'] = 1;
     etat_tube_fluo['B'] = 1;
 
-    for(auto i=0; i<256; i++)trit.push_back("");
     trit['A'] = TRIT_A;
     trit['B'] = TRIT_B;
     trit['C'] = TRIT_C;
