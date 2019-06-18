@@ -31,6 +31,7 @@ class Gestion {
     GPIO bp;
     GPIO pwm;
     ADC an;
+    char tube_fluo;
     char *etat_tube_fluo;
     std::vector<std::string> trit;
 };

@@ -1,33 +1,12 @@
 #include "PWM.hpp"
 
-void PWM::run(){
-    // mutex->lock();
+void PWM::on(){
+    if(counter < limit){
+        set(true);
+    }else{
+        set(false);
+    }
 
-    // if(!out->bad()){
-    //     (*out) << 1;
-    //     out->flush();
-    // }
-    // usleep(dutyCycle);
-
-    // if(!out->bad()){
-    //     (*out) << 0;
-    //     out->flush();
-    // }
-    // usleep(100-dutyCycle);
-
-    // mutex->unlock();
+    counter++;
+    counter%=10;
 }
-
-// bool PWM::set(bool state){
-//     mutex->lock();
-//     if(!out->bad()){
-//         (*out) << ((state)?1:0);
-//         out->flush();
-
-//         return true;
-//     }
-
-//     mutex->unlock();
-
-//     return false;
-// }

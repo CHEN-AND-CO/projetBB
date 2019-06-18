@@ -19,6 +19,7 @@ int main(int argc, char *argv[]){
       break;
     default:
       while(true){
+        usleep(1);
         gestion.selection();
       }
       break;
