@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
                 << "\t activation=" << std::atoi(argv[3])
                 << "\t repetitions=" << std::atoi(argv[4])
                 << "\n";
-      gestion.trans_trame_433MHz(
+      gestion.trans_trame2_433MHz(
         *argv[1],
         std::atoi(argv[2]),
         !std::atoi(argv[3]),

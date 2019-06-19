@@ -25,7 +25,8 @@ class Gestion {
     void GPIO_1to0(int delai1, int delai0);
     void trans_data_433MHz(char data);
     void trans_trame_433MHz(char maison, char objet, char activation, char repetition);
-
+    void trans_trame2_433MHz(char maison, char objet, char activation, char repetition);
+    std::string convertisseur(int decimal = 0, int bits = 4);
     private:
     PWM r,v,b;
     GPIO bp;

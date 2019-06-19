@@ -146,6 +146,32 @@ void Gestion::trans_trame_433MHz(char maison, char objet, char activation, char 
         for(const auto &i : TRIT_SEQ) trans_data_433MHz(i);
         trans_data_433MHz('0'+activation);
         trans_data_433MHz('S');
+        usleep(1000);
         std::cout << "\n";
     }
+}
+
+void Gestion::trans_trame2_433MHz(char maison, char objet, char activation, char repetition){
+    while(repetition--){    
+        for(const auto &i : convertisseur(maison-'A', 4)) trans_data_433MHz(i);
+        for(const auto &i : convertisseur(objet, 4)) trans_data_433MHz(i);
+        for(const auto &i : TRIT_SEQ2) trans_data_433MHz(i);
+        trans_data_433MHz('0'+activation);
+        trans_data_433MHz('S');
+        usleep(1000);
+        std::cout << "\n";
+    }
+}
+
+std::string Gestion::convertisseur (int decimal, int bits){
+  int binaire;
+  std::string tram = "";
+
+  for(int i=0 ; i < bits ; i++){
+    binaire=(decimal%2);
+    tram=std::to_string(binaire)+tram;
+    decimal=(decimal-binaire)/2;
+  }
+
+  return  tram;
 }
