@@ -25,13 +25,14 @@ int main(int argc, char *argv[]){
       );
       break;
     default:
-      auto future = std::async(std::launch::async, GetLineFromCin);
+      //auto future = std::async(std::launch::async, GetLineFromCin);
       bool menuPrincipal = true, menuChoix=false;
+      std::thread entree([&gestion, &menuPrincipal, &menuChoix](){
+          std::string line;
 
-      while(true){
-        if (future.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
-          auto line = future.get();
-          future = std::async(std::launch::async, GetLineFromCin);
+          std::cin >> line;
+          //auto line = future.get();
+          //future = std::async(std::launch::async, GetLineFromCin);
 
           if(menuPrincipal){
             std::cout << "Choisissez un mode de fonctionnement :" << "\n";
@@ -85,11 +86,15 @@ int main(int argc, char *argv[]){
             }
 
             menuChoix = false;
+          }else{
+            menuChoix = true;
           }
-        }else{
-          menuChoix = true;
-        }
-        
+        });
+      
+
+        entree.join();
+      while(true){
+        //if (future.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
         gestion.selection();
       }
       break;
