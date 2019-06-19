@@ -46,6 +46,17 @@ int main(int argc, char *argv[]){
             switch(choix){
               case 1:
                 std::cout << "Vous avez choisi le mode recherche de prise !" << "\n";
+                int debut, longueur, etat, limit; 
+
+                std::cout << "Debut : ";
+                std::cin >> debut;
+                std::cout << "Longueur : ";
+                std::cin >> longueur;
+                std::cout << "Etat : ";
+                std::cin >> etat;
+                std::cout << "Limit : ";
+                std::cin >> limit;
+                gestion.recherche(debut, longueur, etat, limit);
 
                 exit(EXIT_SUCCESS);
                 break;

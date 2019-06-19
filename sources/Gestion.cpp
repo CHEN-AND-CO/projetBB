@@ -193,3 +193,23 @@ void Gestion::commande_radio_manuelle(char tube_fluo, int etat){
         break;
     }
 }
+
+void Gestion::recherche(int debut, int longueur, int etat, int limit){
+    std::string code;
+    for(; debut < longueur ; debut++){
+        code=convertisseur(debut);
+        if(!code.compare("00011000") || !code.compare("00100100") || !code.compare("01000010")){
+            debut++;
+            code=convertisseur(debut, limit);
+        }
+        for(auto j = 0; j < REPETITIONS; j++){
+            for(const auto &valeur : code)  trans_data_433MHz(valeur);
+            for(auto i = 0; i < 11-limit; i++) trans_data_433MHz('1');
+            trans_data_433MHz('0'+etat);
+            trans_data_433MHz('S');
+            usleep(1000);
+            std::cout <<  " code: " << debut << '\n';
+        }
+    usleep(500000);
+    }
+}
