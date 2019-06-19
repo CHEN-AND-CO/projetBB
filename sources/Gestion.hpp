@@ -28,6 +28,7 @@ class Gestion {
     void trans_trame2_433MHz(char maison, char objet, char activation, char repetition);
     std::string convertisseur(int decimal = 0, int bits = 4);
     void commande_radio_manuelle(char tube_fluo, int etat);
+    
     private:
     PWM r,v,b;
     GPIO bp;

@@ -27,11 +27,12 @@ int main(int argc, char *argv[]){
       break;
     default:
       auto future = std::async(std::launch::async, GetLineFromCin);
-      bool menuPrincipal = true;
+      bool menuPrincipal = true, menuChoix=false;
 
       while(true){
-        if (future.wait_for(std::chrono::seconds(0)) == std::future_status::ready) {
+        if (future.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
           auto line = future.get();
+          future = std::async(std::launch::async, GetLineFromCin);
 
           if(menuPrincipal){
             std::cout << "Choisissez un mode de fonctionnement :" << "\n";
@@ -50,12 +51,13 @@ int main(int argc, char *argv[]){
                 break;
               case 2:
                 menuPrincipal=false;
+                menuChoix=true;
                 break;
               case 0:
               default:
                 break;
             }
-          }else{
+          }else if(menuChoix){
             int etat; char couleur;
 
             std::cout << "Vous avez le mode menu !" << "\n";
@@ -71,9 +73,11 @@ int main(int argc, char *argv[]){
             }else{
               gestion.commande_radio_manuelle(std::toupper(couleur), etat);
             }
-            
+
+            menuChoix = false;
           }
-          future = std::async(std::launch::async, GetLineFromCin);
+        }else{
+          menuChoix = true;
         }
         
         gestion.selection();
