@@ -25,7 +25,7 @@ void Gestion::selection(){
     v.off();
     b.off();
 
-    if(etat_tube_fluo[tube_fluo]){
+    if(etat_tube_fluo[(int)tube_fluo]){
         r.setLimit(3);
     }else{
         r.setLimit(10);
@@ -36,7 +36,7 @@ void Gestion::selection(){
     v.on();
     b.off();
 
-    if(etat_tube_fluo[tube_fluo]){
+    if(etat_tube_fluo[(int)tube_fluo]){
         v.setLimit(3);
     }else{
         v.setLimit(10);
@@ -47,7 +47,7 @@ void Gestion::selection(){
     v.off();
     b.on();
 
-    if(etat_tube_fluo[tube_fluo]){
+    if(etat_tube_fluo[(int)tube_fluo]){
         b.setLimit(3);
     }else{
         b.setLimit(10);
@@ -80,27 +80,27 @@ void Gestion::selection(){
 void Gestion::commande_radio(char tube_fluo, char *etat_tube_fluo){
     std::string couleur, status;
     
-    etat_tube_fluo[tube_fluo] = !etat_tube_fluo[tube_fluo];
+    etat_tube_fluo[(int)tube_fluo] = !etat_tube_fluo[(int)tube_fluo];
 
     switch(tube_fluo){
         case 'R':
             couleur="rouge";
-            trans_trame_433MHz('D', 1, etat_tube_fluo[tube_fluo], REPETITIONS);
+            trans_trame_433MHz('D', 1, etat_tube_fluo[(int)tube_fluo], REPETITIONS);
         break;
         case 'V':
             couleur="vert";
-            trans_trame_433MHz('C', 2, etat_tube_fluo[tube_fluo], REPETITIONS);
+            trans_trame_433MHz('C', 2, etat_tube_fluo[(int)tube_fluo], REPETITIONS);
             break;
         case 'B':
             couleur="bleu";
-            trans_trame_433MHz('B', 3, etat_tube_fluo[tube_fluo], REPETITIONS);
+            trans_trame_433MHz('B', 3, etat_tube_fluo[(int)tube_fluo], REPETITIONS);
             break;
         default:
             return;
         break;
     }
 
-    if(!etat_tube_fluo[tube_fluo]){
+    if(!etat_tube_fluo[(int)tube_fluo]){
         status="allumé";
     }else{
         status="éteint";
@@ -174,4 +174,22 @@ std::string Gestion::convertisseur (int decimal, int bits){
   }
 
   return  tram;
+}
+
+void Gestion::commande_radio_manuelle(char tube_fluo, int etat){
+    etat_tube_fluo[(int)tube_fluo] = etat;
+    switch(tube_fluo){
+        case 'R':
+            trans_trame_433MHz('D', 1, etat_tube_fluo[(int)tube_fluo], REPETITIONS);
+        break;
+        case 'V':
+            trans_trame_433MHz('C', 2, etat_tube_fluo[(int)tube_fluo], REPETITIONS);
+            break;
+        case 'B':
+            trans_trame_433MHz('B', 3, etat_tube_fluo[(int)tube_fluo], REPETITIONS);
+            break;
+        default:
+            return;
+        break;
+    }
 }
