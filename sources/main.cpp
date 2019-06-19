@@ -7,7 +7,6 @@ std::string GetLineFromCin() {
     return line;
 }
 
-
 int main(int argc, char *argv[]){
   Gestion gestion;
 

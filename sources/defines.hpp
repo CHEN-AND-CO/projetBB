@@ -32,6 +32,7 @@
 
 #define TRIT_SEQ    "0111"
 #define TRIT_SEQ2   "111"
+#define TRIT_MAGIK  "100"
 
 #define REPETITIONS 10
 
