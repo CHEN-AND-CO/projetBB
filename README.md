@@ -1,5 +1,6 @@
 # projetBB
-Projet Beaglebone V12
+Projet Beaglebone Groupe V12
+Commands lights with a radio module on a beaglebone card.
 
 ## Build for Beaglebone
 
